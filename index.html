@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krisy Tienda Virtual</title>
+    <style>
+        :root {
+            --bg: #f9f5ff;
+            --surface: #ffffff;
+            --primary: #d63dd8;
+            --primary-soft: #f8d4f7;
+            --text: #2d1f3e;
+            --muted: #6d5475;
+            --border: #e8d5ef;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Poppins', Inter, Arial, sans-serif;
+            background: radial-gradient(circle at top, #fff0ff 0%, #f9f5ff 40%, #eef0ff 100%);
+            color: var(--text);
+        }
+
+        .page-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.82);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .folder-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 180px;
+            padding: 1rem 1.15rem;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: var(--surface);
+            text-decoration: none;
+            color: var(--text);
+            box-shadow: 0 15px 35px rgba(82, 35, 111, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .folder-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 40px rgba(82, 35, 111, 0.12);
+        }
+
+        .folder-icon {
+            font-size: 2rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .folder-card strong {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 1.05rem;
+            text-align: center;
+        }
+
+        .folder-card span {
+            color: var(--muted);
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .folder-card.admin {
+            background: linear-gradient(180deg, #fff0ff 0%, #f7e0ff 100%);
+            border-color: #e9c6f4;
+        }
+
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3.5rem 1.5rem;
+            text-align: center;
+            gap: 1.5rem;
+        }
+
+        .hero-card {
+            width: 100%;
+            max-width: 780px;
+            padding: 2rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: 0 18px 45px rgba(70, 34, 106, 0.08);
+        }
+
+        .hero-card h1 {
+            margin: 0 0 1rem;
+            font-size: clamp(2rem, 3vw, 3rem);
+            line-height: 1.05;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .hero-logo {
+            display: block;
+            margin: 0 auto 0.8rem;
+            width: clamp(120px, 20vw, 180px);
+            height: clamp(120px, 20vw, 180px);
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--border);
+            box-shadow: 0 18px 36px rgba(70, 34, 106, 0.10);
+            transition: transform 0.18s ease;
+        }
+
+        .hero-logo:hover {
+            transform: scale(1.03);
+        }
+
+        .hero-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        .center-folders {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.75rem 0 0;
+            flex-wrap: wrap;
+        }
+
+        .center-folders a {
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .center-folders .folder-card-compact {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 140px;
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: var(--surface);
+            box-shadow: 0 10px 26px rgba(82, 35, 111, 0.06);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        .center-folders .folder-card-compact:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(82, 35, 111, 0.12);
+        }
+
+        .site-footer {
+            padding: 1rem 1.5rem;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 720px) {
+            .top-nav {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 1rem;
+            }
+
+            .folder-card {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="top-nav">
+            <a class="folder-card" href="usuario/index.html">
+                <span class="folder-icon">📁</span>
+                <strong>Usuario</strong>
+                <span>Entrar a la tienda</span>
+            </a>
+            <a class="folder-card admin" href="administrador/login.html">
+                <span class="folder-icon">🔐</span>
+                <strong>Administrador</strong>
+                <span>Ingreso seguro</span>
+            </a>
+        </header>
+
+        <main class="hero">
+            <div class="center-folders" role="navigation" aria-label="Carpetas centrales">
+                <a class="folder-card-compact" href="historia.html">
+                    <span class="folder-icon">📜</span>
+                    <strong>Historia</strong>
+                    <span>Conoce nuestra historia</span>
+                </a>
+                <a class="folder-card-compact" href="modelos.html">
+                    <span class="folder-icon">🧾</span>
+                    <strong>Modelos</strong>
+                    <span>Catálogo de modelos</span>
+                </a>
+                <a class="folder-card-compact" href="pack.html">
+                    <span class="folder-icon">🎁</span>
+                    <strong>Pack</strong>
+                    <span>Ofertas y packs</span>
+                </a>
+            </div>
+
+            <section class="hero-card">
+                <img class="hero-logo" src="fotos/logo.jpeg" alt="Logo Krisy">
+                <h1>Bienvenido a Krisy Store</h1>
+                <p>Selecciona una carpeta en la parte superior para entrar como usuario o administrador. Estas rutas te llevan directamente a la tienda de clientes o al panel privado con acceso seguro.</p>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <p>Usa los enlaces superiores para navegar entre usuario y administrador.</p>
+        </footer>
+    </div>
+</body>
+</html>
